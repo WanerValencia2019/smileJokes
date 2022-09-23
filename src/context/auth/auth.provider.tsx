@@ -1,6 +1,7 @@
 import React from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { IUser } from '../../models/users';
+import { handleLogin } from './auth.actions';
 
 import authContext from "./auth.context";
 
@@ -13,8 +14,18 @@ const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useLocalStorage('smileJokeIsAuthenticated', false)
 
 
-    const login = () => {
+    const login = async (email: string, password: string) => {
+        const { error, user, session } = await handleLogin(email, password)
 
+        console.log('====================================');
+        console.log(error);
+        console.log('====================================');
+        console.log('====================================');
+        console.log(user);
+        console.log('====================================');
+        console.log('====================================');
+        console.log(session);
+        console.log('====================================');
     }
 
 

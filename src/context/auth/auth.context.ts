@@ -4,7 +4,7 @@ import { IUser } from "../../models/users";
 interface IAuthContext {
     user: IUser,
     isAuthenticated: boolean,
-    login: () => void
+    login: (email: string, password: string) => void
 }
 
 export default createContext<IAuthContext>({
