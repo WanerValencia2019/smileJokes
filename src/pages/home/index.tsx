@@ -17,6 +17,9 @@ export default function Home() {
 
 
   const handleGetNewJoke = async () => {
+    setFavorite(false);
+    setNewJoke(null);
+
     const joke = await getNewJoke()
 
     if (!joke) {
