@@ -5,10 +5,12 @@ interface IAuthContext {
     user: IUser,
     isAuthenticated: boolean,
     login: (email: string, password: string) => void
+    logout: () => void
 }
 
 export default createContext<IAuthContext>({
     user: {} as IUser,
     isAuthenticated: false,
     login: () => null,
+    logout: () => null
 })

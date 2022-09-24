@@ -2,6 +2,7 @@ import React from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { IUser } from '../../models/users';
 import { handleLogin } from './auth.actions';
+import { toast } from 'react-toastify';
 
 import authContext from "./auth.context";
 
@@ -17,20 +18,29 @@ const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const login = async (email: string, password: string) => {
         const { error, user, session } = await handleLogin(email, password)
 
-        console.log('====================================');
-        console.log(error);
-        console.log('====================================');
-        console.log('====================================');
-        console.log(user);
-        console.log('====================================');
-        console.log('====================================');
-        console.log(session);
-        console.log('====================================');
+        if(error) {
+            toast.error(error.message)
+        }else {
+            toast.success("Welcome")
+        }
+
+        setUser({
+            email: user?.email || "",
+            token: session?.access_token || "",
+            refreshToken: session?.refresh_token || "",
+        })
+
+        setIsAuthenticated(true)
+    }
+
+    const logout = () => {
+        setIsAuthenticated(false)
+        setUser({} as IUser)
     }
 
 
     return (
-        <authContext.Provider value={{user, login, isAuthenticated}}>
+        <authContext.Provider value={{user, login, logout, isAuthenticated}}>
         { children }
         </authContext.Provider> 
     )
