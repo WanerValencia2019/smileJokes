@@ -7,7 +7,7 @@ import authContext from '../context/auth/auth.context'
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'My Jokes', href: '/my-jokes' },
+  { name: 'My Favorite Jokes', href: '/my-jokes' },
 ]
 
 function classNames(...classes: string[]) {
