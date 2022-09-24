@@ -37,10 +37,15 @@ export default function Home() {
     }
   }
 
-  const handleRemoveFavoriteJoke = () => {
-    console.log('====================================');
-    console.log("REMOVIENDO");
-    console.log('====================================');
+  const handleRemoveFavoriteJoke = async () => {
+    const removedJoke = await removeJoke(newJoke?.id || "")
+
+    if (removedJoke) {
+      toast.info("Joke delete successfully")
+      setFavorite(false);
+    } else {
+      toast.error("Joke delete failed")
+    }
   }
 
   const handleChangeFavoritedSelection = () => {
@@ -49,7 +54,7 @@ export default function Home() {
     }
 
     if (favorite && newJoke) {
-      setFavorite(false);
+      handleRemoveFavoriteJoke()
     }
   }
 
