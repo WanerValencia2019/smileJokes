@@ -1,7 +1,7 @@
 import axios from "axios"
-
+axios.defaults.baseURL = `https://smilejokefunctions.netlify.app/.netlify/functions`
 export const handleGetNewJoke = async (token: string) => {
-    const url = "http://localhost:8888/.netlify/functions/getNewJoke"
+    const url = "/getNewJoke"
     return await axios.get(url, {
         headers: {
             "Authorization": token,
