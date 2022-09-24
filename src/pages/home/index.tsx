@@ -1,13 +1,19 @@
 import React, { useContext, useState } from 'react'
 import Layout from '../../components/layout'
 import { HeartIcon } from '@heroicons/react/24/outline'
+import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
+
 import jokesContext from '../../context/jokes/jokes.context'
 import { IJoke } from '../../models/jokes'
 import { toast } from 'react-toastify'
+import JokeCard from '../../components/jokeCard'
+
+
+
 export default function Home() {
   const [newJoke, setNewJoke] = useState<IJoke | null>(null)
   const [favorite, setFavorite] = useState(false);
-  const { getNewJoke } = useContext(jokesContext)
+  const { getNewJoke, createJoke, removeJoke } = useContext(jokesContext)
 
 
   const handleGetNewJoke = async () => {
@@ -20,10 +26,15 @@ export default function Home() {
     }
   }
 
-  const handleAddFavoriteJoke = () => {
-    console.log('====================================');
-    console.log("AGREGANDO");
-    console.log('====================================');
+  const handleAddFavoriteJoke = async () => {
+    const createdJoke = await createJoke(newJoke?.value || "", newJoke?.icon_url || "")
+    if (createdJoke) {
+      setNewJoke(createdJoke)
+      toast.success("Added to favorites")
+      setFavorite(true);
+    } else {
+      toast.error("Error, you can't add to favorites")
+    }
   }
 
   const handleRemoveFavoriteJoke = () => {
@@ -34,7 +45,7 @@ export default function Home() {
 
   const handleChangeFavoritedSelection = () => {
     if (!favorite && newJoke) {
-      setFavorite(true);
+      handleAddFavoriteJoke();
     }
 
     if (favorite && newJoke) {
@@ -52,12 +63,12 @@ export default function Home() {
           </button>
           {
             newJoke &&
-            <article className="overflow-hidden w-8/12 mt-10 border p-3 rounded flex flex-col">
-              <p className="font-light text-2xl text-justify text-white">
-                {newJoke?.value}
-              </p>
-              <HeartIcon className="h-8 w-8 mt-2 flex self-end cursor-pointer hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-hidden="true" aria-label="Add to favorite" />
-            </article>
+            <JokeCard
+              isFavorite={favorite}
+              text={newJoke.value}
+              removeFromFavorite={handleChangeFavoritedSelection}
+              addToFavorite={handleChangeFavoritedSelection}
+            />
           }
         </div>
       </section>
