@@ -7,6 +7,14 @@ export const handleLogin = async (email: string, password: string) => {
     })
 }
 
+export const handleRegister = async (email: string, password: string) => {
+    return await supabaseInstance.auth.signUp({
+        email,
+        password,
+    })
+}
+
+
 export const handleLogout = async () => {
     return await supabaseInstance.auth.signOut();
 }

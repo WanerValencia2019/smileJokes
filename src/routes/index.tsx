@@ -5,6 +5,7 @@ import loaderContext from '../context/loader/loader.context';
 import Home from '../pages/home';
 import Login from '../pages/login';
 import MyJokes from '../pages/myJokes';
+import Register from '../pages/register';
 import PrivateRoute from './privateRoute';
 import PublicRoute from './publicRoute';
 
@@ -17,6 +18,7 @@ export default function AppRoutes() {
             <Routes>
                 <Route element={<PublicRoute />}>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/verify" element={<Login />} />
                 </Route>
                 <Route element={<PrivateRoute />}>
