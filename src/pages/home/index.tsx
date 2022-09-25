@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <Layout>
       <section className="flex flex-col  items-center pt-10  h-screen w-full mx-auto my-auto">
-        <div className="flex flex-col justify-center items-center w-10/12 bg-gray-600 rounded-sm shadow-2xl p-10">
+        <div className="flex flex-col justify-center items-center sm:w-full md:w-10/12 bg-gray-600 rounded-sm shadow-2xl p-10">
           <button onClick={handleGetNewJoke} className="p-4 bg-blue-600 rounded-sm font-medium shadow-2xl
             transition ease-in-out delay-150  hover:bg-blue-500 duration-200 text-white">
             Get New Joke!!!

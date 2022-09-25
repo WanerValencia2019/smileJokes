@@ -11,8 +11,8 @@ interface IJokeCard {
 
 export default function JokeCard({ isFavorite, addToFavorite, removeFromFavorite, text }:IJokeCard) {
   return (
-    <article className="overflow-hidden w-8/12 mt-10 border p-3 rounded flex flex-col">
-    <p className="font-light text-2xl text-justify text-white">
+    <article className="overflow-hidden md:w-8/12 sm:w-10/12 mt-10 border p-3 rounded flex flex-col">
+    <p className="font-light md:text-2xl sm:text-lg text-justify text-white">
       {text}
     </p>
     {

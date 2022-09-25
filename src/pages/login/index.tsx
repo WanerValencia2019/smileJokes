@@ -17,7 +17,7 @@ export default function Login() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="bg-white shadow-lg p-10 rounded w-4/12">
+            <div className="bg-white shadow-lg p-10 rounded md:w-4/12 sm:w-5/6">
                 <div className="px-4 sm:px-0">
                     <h3 className="text-lg text-center font-medium leading-6 text-gray-900">
                         SMILE JOKES - SIGN IN
